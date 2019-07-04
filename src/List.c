@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(List)
+
+#else
+
 static const char* List_Name(void) {
   return "List";
 }
@@ -76,6 +82,7 @@ static struct Example* List_Examples(void) {
   return examples;
 }
 
+#endif
 
 struct List {
   var type;

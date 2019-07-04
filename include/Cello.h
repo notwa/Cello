@@ -755,5 +755,36 @@ void Cello_Exit(void);
   int Cello_Main(__VA_ARGS__)
 
 #endif
+
+#define CELLO__CONCAT_EX(a,b) a##b
+#define CELLO__CONCAT(a,b) CELLO__CONCAT_EX(a,b)
+
+#define CELLO__DUMMY_HELP(name) \
+  static const char* CELLO__CONCAT(name, __dummy_help) = ""; \
+  static const char* CELLO__CONCAT(name, _Name)(void) { \
+    return CELLO__CONCAT(name, __dummy_help); \
+  } \
+  static const char* CELLO__CONCAT(name, _Brief)(void) { \
+    return CELLO__CONCAT(name, __dummy_help); \
+  } \
+  static const char* CELLO__CONCAT(name, _Description)(void) { \
+    return CELLO__CONCAT(name, __dummy_help); \
+  } \
+  static const char* CELLO__CONCAT(name, _Definition)(void) { \
+    return CELLO__CONCAT(name, __dummy_help); \
+  } \
+  static struct Example* CELLO__CONCAT(name, _Examples)(void) { \
+    static struct Example examples[] = { \
+      {NULL, NULL} \
+    }; \
+    return examples; \
+  } \
+  static struct Method* CELLO__CONCAT(name, _Methods)(void) { \
+    static struct Method methods[] = { \
+      {NULL, NULL, NULL} \
+    }; \
+    return methods; \
+  }
+
   
 #endif

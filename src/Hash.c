@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Hash)
+
+#else
+
 static const char* Hash_Name(void) {
   return "Hash";
 }
@@ -70,6 +76,8 @@ static struct Method* Hash_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Hash = Cello(Hash,
   Instance(Doc,

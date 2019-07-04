@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Assign)
+
+#else
+
 static const char* Assign_Name(void) {
   return "Assign";
 }
@@ -67,6 +73,8 @@ static struct Method* Assign_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Assign = Cello(Assign,
   Instance(Doc,
     Assign_Name,       Assign_Brief,    Assign_Description,
@@ -90,6 +98,12 @@ var assign(var self, var obj) {
     "Cannot assign type %s to type %s", type_of(obj), type_of(self));
   
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Swap)
+
+#else
 
 static const char* Swap_Name(void) {
   return "Swap";
@@ -147,6 +161,8 @@ static struct Method* Swap_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Swap = Cello(Swap,
   Instance(Doc,

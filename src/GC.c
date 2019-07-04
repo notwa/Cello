@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Mark)
+
+#else
+
 static const char* Mark_Name(void) {
   return "Mark";
 }
@@ -43,6 +49,8 @@ static struct Method* Mark_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Mark = Cello(Mark, Instance(Doc, 
   Mark_Name,       Mark_Brief, Mark_Description, 
   Mark_Definition, NULL,       Mark_Methods));
@@ -69,6 +77,12 @@ static const size_t GC_Primes[GC_PRIMES_COUNT] = {
   74093,   148073,  296099,  592019,
   1100009, 2200013, 4400021, 8800019
 };
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(GC)
+
+#else
 
 static const char* GC_Name(void) {
   return "GC";
@@ -104,6 +118,8 @@ static struct Example* GC_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 struct GCEntry {
   var ptr;

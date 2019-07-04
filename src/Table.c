@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Table)
+
+#else
+
 static const char* Table_Name(void) {
   return "Table";
 }
@@ -63,6 +69,8 @@ static struct Example* Table_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 struct Table {
   var data;

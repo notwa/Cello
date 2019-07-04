@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Format)
+
+#else
+
 static const char* Format_Name(void) {
   return "Format";
 }
@@ -64,6 +70,8 @@ static struct Method* Format_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Format = Cello(Format,
   Instance(Doc, 
     Format_Name,       Format_Brief,    Format_Description,
@@ -92,6 +100,12 @@ int format_from(var self, int pos, const char* fmt, ...) {
   va_end(va);
   return ret;
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Show)
+
+#else
 
 static const char* Show_Name(void) {
   return "Show";
@@ -208,6 +222,8 @@ static struct Method* Show_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Show = Cello(Show,
   Instance(Doc, 

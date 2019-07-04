@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Doc)
+
+#else
+
 static const char* Doc_Name(void) {
   return "Doc";
 }
@@ -81,6 +87,8 @@ static struct Example* Doc_Examples(void) {
   
 }
 
+#endif
+
 var Doc = Cello(Doc,
   Instance(Doc,
     Doc_Name,       Doc_Brief,    Doc_Description,
@@ -104,6 +112,12 @@ const char* definition(var type) {
   return type_method(type, Doc, definition);
 }
     
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Help)
+
+#else
+
 static const char* Help_Name(void) {
   return "Help";
 }
@@ -154,6 +168,8 @@ static struct Example* Help_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 var Help = Cello(Help,
   Instance(Doc,

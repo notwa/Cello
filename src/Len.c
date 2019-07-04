@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Len)
+
+#else
+
 static const char* Len_Name(void) {
   return "Len";
 }
@@ -50,6 +56,8 @@ static struct Method* Len_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Len = Cello(Len,
   Instance(Doc,

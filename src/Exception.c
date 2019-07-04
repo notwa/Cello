@@ -33,6 +33,12 @@ struct Exception {
   jmp_buf* buffers[EXCEPTION_MAX_DEPTH];  
 };
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Exception)
+
+#else
+
 static const char* Exception_Name(void) {
   return "Exception";
 }
@@ -117,6 +123,8 @@ static struct Example* Exception_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static void Exception_New(var self, var args) {
   struct Exception* e = self;

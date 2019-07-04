@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Cmp)
+
+#else
+
 static const char* Cmp_Name(void) {
   return "Cmp";
 }
@@ -112,6 +118,8 @@ static struct Method* Cmp_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Cmp = Cello(Cmp,
   Instance(Doc,
     Cmp_Name,       Cmp_Brief,    Cmp_Description, 
@@ -137,6 +145,12 @@ bool  gt(var self, var obj) { return cmp(self, obj) > 0; }
 bool  lt(var self, var obj) { return cmp(self, obj) < 0; }
 bool  ge(var self, var obj) { return not lt(self, obj); }
 bool  le(var self, var obj) { return not gt(self, obj); }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Sort)
+
+#else
 
 static const char* Sort_Name(void) {
   return "Sort";
@@ -193,6 +207,8 @@ static struct Method* Sort_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Sort = Cello(Sort, 
   Instance(Doc,

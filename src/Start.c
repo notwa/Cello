@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Start)
+
+#else
+
 static const char* Start_Name(void) {
   return "Start";
 }
@@ -80,6 +86,8 @@ static struct Method* Start_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Start = Cello(Start, Instance(Doc, 
   Start_Name,       Start_Brief,    Start_Description, 

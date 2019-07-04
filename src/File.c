@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Stream)
+
+#else
+
 static const char* Stream_Name(void) {
   return "Stream";
 }
@@ -90,6 +96,8 @@ static struct Method* Stream_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Stream = Cello(Stream,
   Instance(Doc, 
     Stream_Name,       Stream_Brief,    Stream_Description,
@@ -126,6 +134,12 @@ size_t sread(var self, void* output, size_t size) {
 size_t swrite(var self, void* input, size_t size) {
   return method(self, Stream, swrite, input, size);
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(File)
+
+#else
 
 static const char* File_Name(void) {
   return "File";
@@ -180,6 +194,8 @@ static struct Example* File_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static var File_Open(var self, var filename, var access);
 static void File_Close(var self);
@@ -337,6 +353,12 @@ var File = Cello(File,
   Instance(Format, File_Format_To, File_Format_From));
 
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Process)
+
+#else
+
 static const char* Process_Name(void) {
   return "Process";
 }
@@ -378,6 +400,8 @@ static struct Example* Process_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static var Process_Open(var self, var filename, var access);
 static void Process_Close(var self);

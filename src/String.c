@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(C_Str)
+
+#else
+
 static const char* C_Str_Name(void) {
   return "C_Str";
 }
@@ -48,6 +54,8 @@ static struct Method* C_Str_Methods(void) {
   return methods;
 }
 
+#endif
+
 var C_Str = Cello(C_Str,
   Instance(Doc,
     C_Str_Name,       C_Str_Brief,    C_Str_Description, 
@@ -62,6 +70,12 @@ char* c_str(var self) {
   return method(self, C_Str, c_str);
 }
     
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(String)
+
+#else
+
 static const char* String_Name(void) {
   return "String";
 }
@@ -120,6 +134,8 @@ static struct Example* String_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static void String_Assign(var self, var obj);
 

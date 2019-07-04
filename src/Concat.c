@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Concat)
+
+#else
+
 static const char* Concat_Name(void) {
   return "Concat";
 }
@@ -60,6 +66,8 @@ static struct Method* Concat_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Concat = Cello(Concat,
   Instance(Doc,

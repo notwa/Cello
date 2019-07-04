@@ -3,6 +3,12 @@
 var _ = CelloEmpty(_);
 var Terminal = CelloEmpty(Terminal);
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Iter)
+
+#else
+
 static const char* Iter_Name(void) {
   return "Iter";
 }
@@ -90,6 +96,8 @@ static struct Method* Iter_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Iter = Cello(Iter,
   Instance(Doc,
     Iter_Name,       Iter_Brief,    Iter_Description, 
@@ -114,6 +122,12 @@ var iter_prev(var self, var curr) {
 var iter_type(var self) {
   return method(self, Iter, iter_type);  
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Range)
+
+#else
 
 static const char* Range_Name(void) {
   return "Range";
@@ -188,6 +202,8 @@ static struct Method* Range_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var range_stack(var self, var args) {
   
@@ -372,6 +388,12 @@ var Range = Cello(Range,
     Range_Iter_Init,  Range_Iter_Next, 
     Range_Iter_Last,  Range_Iter_Prev, Range_Iter_Type));
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Slice)
+
+#else
+
 static const char* Slice_Name(void) {
   return "Slice";
 }
@@ -449,6 +471,8 @@ static struct Method* Slice_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 static int64_t Slice_Arg(int part, size_t n, var arg) {
   
@@ -675,6 +699,12 @@ var Slice = Cello(Slice,
   Instance(Show,     Slice_Show, NULL));
   
   
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Zip)
+
+#else
+
 static const char* Zip_Name(void) {
   return "Zip";
 }
@@ -740,6 +770,8 @@ static struct Method* Zip_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var zip_stack(var self) {
   struct Zip* z = self;
@@ -888,6 +920,12 @@ var enumerate_stack(var self) {
   return self;
 }
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Filter)
+
+#else
+
 static const char* Filter_Name(void) {
   return "Filter";
 }
@@ -959,6 +997,8 @@ static struct Method* Filter_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 static void Filter_New(var self, var args) {
   struct Filter* f = self;
@@ -1041,6 +1081,12 @@ var Filter = Cello(Filter,
     Filter_Iter_Last, Filter_Iter_Prev, Filter_Iter_Type));
     
     
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Map)
+
+#else
+
 static const char* Map_Name(void) {
   return "Map";
 }
@@ -1120,6 +1166,8 @@ static struct Example* Map_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static void Map_New(var self, var args) {
   struct Map* m = self;

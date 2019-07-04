@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Call)
+
+#else
+
 static const char* Call_Name(void) {
   return "Call";
 }
@@ -56,6 +62,8 @@ static struct Method* Call_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Call = Cello(Call,
   Instance(Doc,
     Call_Name,       Call_Brief,    Call_Description, 
@@ -64,6 +72,12 @@ var Call = Cello(Call,
 var call_with(var self, var args) {
   return method(self, Call, call_with, args);
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Function)
+
+#else
 
 static const char* Function_Name(void) {
   return "Function";
@@ -128,6 +142,8 @@ static const char* Function_Definition(void) {
     "  var (*func)(var);\n"
     "};\n";
 }
+
+#endif
 
 static var Function_Call(var self, var args) {
   struct Function* f = self;

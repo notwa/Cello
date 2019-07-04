@@ -21,6 +21,12 @@ var header_init(var head, var type, int alloc) {
   return ((char*)self) + sizeof(struct Header);
 }
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Alloc)
+
+#else
+
 static const char* Alloc_Name(void) {
   return "Alloc";
 }
@@ -113,6 +119,8 @@ static struct Method* Alloc_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Alloc = Cello(Alloc, Instance(Doc, 
   Alloc_Name,       Alloc_Brief,    Alloc_Description, 
@@ -208,6 +216,12 @@ void dealloc(var self) {
 
 void dealloc_raw(var self)  { dealloc(self); }
 void dealloc_root(var self) { dealloc(self); }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(New)
+
+#else
 
 static const char* New_Name(void) {
   return "New";
@@ -309,6 +323,8 @@ static struct Method* New_Methods(void) {
   return methods;
 }
 
+#endif
+
 var New = Cello(New,
   Instance(Doc,
     New_Name,       New_Brief,    New_Description, 
@@ -364,6 +380,12 @@ static void del_by(var self, int method) {
 void del(var self) { del_by(self, ALLOC_STANDARD); }
 void del_raw(var self) { del_by(self, ALLOC_RAW); }
 void del_root(var self) { del_by(self, ALLOC_ROOT); }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Copy)
+
+#else
 
 static const char* Copy_Name(void) {
   return "Copy";
@@ -428,6 +450,8 @@ static struct Method* Copy_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Copy = Cello(Copy,
   Instance(Doc,

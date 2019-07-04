@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(C_Int)
+
+#else
+
 static const char* C_Int_Name(void) {
   return "C_Int";
 }
@@ -48,11 +54,19 @@ static struct Method* C_Int_Methods(void) {
   return methods;
 }
 
+#endif
+
 var C_Int = Cello(C_Int,
   Instance(Doc,
     C_Int_Name,       C_Int_Brief,    C_Int_Description, 
     C_Int_Definition, C_Int_Examples, C_Int_Methods));
     
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(C_Float)
+
+#else
+
 static const char* C_Float_Name(void) {
   return "C_Float";
 }
@@ -101,6 +115,8 @@ static struct Method* C_Float_Methods(void) {
   return methods;
 }
 
+#endif
+
 var C_Float = Cello(C_Float,
   Instance(Doc,
     C_Float_Name,       C_Float_Brief,    C_Float_Description, 
@@ -123,6 +139,12 @@ double c_float(var self) {
   
   return method(self, C_Float, c_float);
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Int)
+
+#else
 
 static const char* Int_Name(void) {
   return "Int";
@@ -162,6 +184,8 @@ static struct Example* Int_Examples(void) {
   
 }
 
+#endif
+
 static void Int_Assign(var self, var obj) {
   struct Int* i = self;
   i->val = c_int(obj);
@@ -196,6 +220,12 @@ var Int = Cello(Int,
   Instance(Hash,    Int_Hash),
   Instance(C_Int,   Int_C_Int),
   Instance(Show,    Int_Show, Int_Look));
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Float)
+
+#else
 
 static const char* Float_Name(void) {
   return "Float";
@@ -234,6 +264,8 @@ static struct Example* Float_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static void Float_Assign(var self, var obj) {
   struct Float* f = self;

@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Cast)
+
+#else
+
 static const char* Cast_Name(void) {
   return "Cast";
 }
@@ -52,6 +58,8 @@ static struct Method* Cast_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Cast = Cello(Cast, Instance(Doc, 
   Cast_Name,       Cast_Brief,    Cast_Description, 
   Cast_Definition, Cast_Examples, Cast_Methods));
@@ -71,6 +79,12 @@ var cast(var self, var type) {
   }
   
 }
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Type)
+
+#else
 
 static const char* Type_Name(void) {
   return "Type";
@@ -152,6 +166,8 @@ static struct Method* Type_Methods(void) {
   return methods;
   
 }
+
+#endif
 
 enum {
   CELLO_NBUILTINS = 2 + (CELLO_CACHE_NUM / 3),
@@ -515,6 +531,12 @@ bool implements_method_at_offset(var self, var cls, size_t offset) {
   return Type_Implements_Method_At_Offset(Type_Of(self), cls, offset);
 }
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Size)
+
+#else
+
 static const char* Size_Name(void) {
   return "Size";
 }
@@ -568,6 +590,8 @@ static struct Method* Size_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Size = Cello(Size, Instance(Doc, 
   Size_Name,       Size_Brief,    Size_Description, 

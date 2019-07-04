@@ -18,7 +18,9 @@ EXAMPLES := $(wildcard examples/*.c)
 EXAMPLES_OBJ := $(addprefix obj/,$(notdir $(EXAMPLES:.c=.o)))
 EXAMPLES_EXE := $(EXAMPLES:.c=)
 
-CFLAGS = -I ./include -std=gnu99 -Wall -Wno-unused -g -ggdb
+# CELLO_MINSIZE trims 55 KiB but removes internal documentation
+CFLAGS = -I ./include -std=gnu99 -Wall -Wno-unused -Os -s -g0 -flto -DCELLO_MINSIZE
+LFLAGS = -s -Wl,-gc-sections -flto
 
 PLATFORM := $(shell uname)
 COMPILER := $(shell $(CC) -v 2>&1 )
@@ -129,7 +131,6 @@ obj:
 
 # Tests
 
-check: CFLAGS += -Werror -g -ggdb
 check: $(TESTS_OBJ) $(STATIC)
 	$(CC) $(TESTS_OBJ) $(STATIC) $(LIBS) $(LFLAGS) -o ./tests/test
 	./tests/test

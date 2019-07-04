@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Tuple)
+
+#else
+
 static const char* Tuple_Name(void) {
   return "Tuple";
 }
@@ -70,6 +76,8 @@ static struct Method* Tuple_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 static void Tuple_New(var self, var args) {
   struct Tuple* t = self;

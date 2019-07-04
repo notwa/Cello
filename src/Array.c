@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Array)
+
+#else
+
 static const char* Array_Name(void) {
   return "Array";
 }
@@ -76,6 +82,8 @@ static struct Example* Array_Examples(void) {
   
   return examples;
 }
+
+#endif
 
 struct Array {
   var type;

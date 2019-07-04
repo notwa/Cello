@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Push)
+
+#else
+
 static const char* Push_Name(void) {
   return "Push";
 }
@@ -77,6 +83,8 @@ static struct Method* Push_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Push = Cello(Push,
   Instance(Doc,

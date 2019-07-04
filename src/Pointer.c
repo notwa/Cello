@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Pointer)
+
+#else
+
 static const char* Pointer_Name(void) {
   return "Pointer";
 }
@@ -59,6 +65,8 @@ static struct Method* Pointer_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Pointer = Cello(Pointer,
   Instance(Doc,

@@ -1,5 +1,11 @@
 #include "Cello.h" 
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Resize)
+
+#else
+
 static const char* Resize_Name(void) {
   return "Reserve";
 }
@@ -59,6 +65,8 @@ static struct Example* Resize_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 var Resize = Cello(Resize, 
   Instance(Doc,

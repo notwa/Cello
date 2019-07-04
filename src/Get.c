@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Get)
+
+#else
+
 static const char* Get_Name(void) {
   return "Get";
 }
@@ -94,6 +100,8 @@ static struct Method* Get_Methods(void) {
   
   return methods;
 }
+
+#endif
 
 var Get = Cello(Get,
   Instance(Doc,

@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Tree)
+
+#else
+
 static const char* Tree_Name(void) {
   return "Tree";
 }
@@ -63,6 +69,8 @@ static struct Example* Tree_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 struct Tree {
   var root;

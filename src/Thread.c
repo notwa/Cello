@@ -1,5 +1,11 @@
 #include "Cello.h"
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Current)
+
+#else
+
 static const char* Current_Name(void) {
   return "Current";
 }
@@ -55,6 +61,8 @@ static struct Method* Current_Methods(void) {
   return methods;
 }
 
+#endif
+
 var Current = Cello(Current,
   Instance(Doc,
     Current_Name,       Current_Brief,    Current_Description,
@@ -81,6 +89,12 @@ struct Thread {
 #endif  
   
 };
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Thread)
+
+#else
 
 static const char* Thread_Name(void) {
   return "Thread";
@@ -149,6 +163,8 @@ static struct Example* Thread_Examples(void) {
   
   return examples;
 }
+
+#endif
 
 static void Thread_New(var self, var args) {
   struct Thread* t = self;
@@ -491,6 +507,12 @@ var Thread = Cello(Thread,
   Instance(C_Int,   Thread_C_Int),
   Instance(Get,     Thread_Get, Thread_Set, Thread_Mem, Thread_Rem));
 
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Lock)
+
+#else
+
 static const char* Lock_Name(void) {
   return "Lock";
 }
@@ -553,6 +575,8 @@ static struct Example* Lock_Examples(void) {
   
 }
 
+#endif
+
 var Lock = Cello(Lock,
   Instance(Doc,
     Lock_Name,       Lock_Brief,    Lock_Description,
@@ -577,6 +601,12 @@ struct Mutex {
   HANDLE mutex;
 #endif
 };
+
+#ifdef CELLO_MINSIZE
+
+CELLO__DUMMY_HELP(Mutex)
+
+#else
 
 static const char* Mutex_Name(void) {
   return "Mutex";
@@ -607,6 +637,8 @@ static struct Example* Mutex_Examples(void) {
   return examples;
   
 }
+
+#endif
 
 static void Mutex_New(var self, var args) {
   struct Mutex* m = self;
